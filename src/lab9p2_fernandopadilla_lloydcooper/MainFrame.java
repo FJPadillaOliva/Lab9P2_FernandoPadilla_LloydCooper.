@@ -31,7 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
         Dba db = new Dba("./TenRecord.accdb");
         db.conectar();
         try {
-            db.query.execute("select from TenRecord Id,Order ID,Order Date,Customer ID,Country,City,Product ID,Sales");
+            db.query.execute("select [Id],[Order ID],[Order Date],[Customer ID],[Country],[City],[Product ID],[Sales] from TenRecord");
             ResultSet rs = db.query.getResultSet();
             while (rs.next()) {
                 Object[] row = {rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
