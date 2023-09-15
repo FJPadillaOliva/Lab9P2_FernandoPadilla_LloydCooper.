@@ -1,11 +1,48 @@
 package lab9p2_fernandopadilla_lloydcooper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
+    }
+
+    public void refrescarTable() {
+        tablaEliminar.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Row ID", "Order ID", "Order Date", "Customer ID", "Country", "City", "Product ID", "Sales"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaEliminar.getModel();
+        Dba db = new Dba("./TenRecord.accdb");
+        db.conectar();
+        try {
+            db.query.execute("select from TenRecord Id,Order ID,Order Date,Customer ID,Country,City,Product ID,Sales");
+            ResultSet rs = db.query.getResultSet();
+            while (rs.next()) {
+                Object[] row = {rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                    rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)};
+                modelo.addRow(row);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        tablaEliminar.setModel(modelo);
+        db.desconectar();
     }
 
     /**
@@ -504,6 +541,7 @@ public class MainFrame extends javax.swing.JFrame {
             discount = tfDiscount.getText();
             profit = tfProfit.getText();
             Agregar agg = new Agregar(jPanel1, orderID, orderDate, shipDate, shipMode, customerID, customerName, segment, country, city, state, postalCode, region, productID, category, sub_Category, productName, Sales, quantity, discount, profit);
+            refrescarTable();
         }
     }//GEN-LAST:event_btnAgregarRegistroMouseClicked
 
@@ -528,11 +566,17 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnUpdateTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateTableMouseClicked
-
+        refrescarTable();
     }//GEN-LAST:event_btnUpdateTableMouseClicked
 
     private void btnEliminarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarRegistroMouseClicked
-
+        if (tablaEliminar.getSelectedRow() >= 0) {
+            if (JOptionPane.showConfirmDialog(this, "Desea eliminar este elemento?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Eliminar elim = new Eliminar(Integer.parseInt(tablaEliminar.getValueAt(tablaEliminar.getSelectedRow(), 0).toString()));
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe elegir un elemento de la tabla");
+        }
     }//GEN-LAST:event_btnEliminarRegistroMouseClicked
 
     /**
