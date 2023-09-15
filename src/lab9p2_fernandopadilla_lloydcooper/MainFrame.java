@@ -1,7 +1,9 @@
 package lab9p2_fernandopadilla_lloydcooper;
 
+import javax.swing.JOptionPane;
+
 public class MainFrame extends javax.swing.JFrame {
-    
+
     public MainFrame() {
         initComponents();
     }
@@ -472,35 +474,65 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarRegistroMouseClicked
-        
+        if (tfOrderID.getText().isEmpty() || tfOrderDate.getText().isEmpty() || tfShipDate.getText().isEmpty() || tfShipMode.getText().isEmpty() || tfCustomerID.getText().isEmpty()
+                || tfCustomerName.getText().isEmpty() || tfSegment.getText().isEmpty() || tfCountry.getText().isEmpty() || tfCity.getText().isEmpty() || tfState.getText().isEmpty()
+                || tfPostalCode.getText().isEmpty() || tfRegion.getText().isEmpty() || tfProductID.getText().isEmpty() || tfCategory.getText().isEmpty() || tfSubCategory.getText().isEmpty()
+                || tfProductName.getText().isEmpty() || tfSales.getText().isEmpty() || tfQuantity.getText().isEmpty() || tfDiscount.getText().isEmpty() || tfProfit.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
+        } else {
+            String orderID, orderDate, shipDate, shipMode, customerID, customerName,
+                    segment, country, city, state, postalCode, region, productID, category,
+                    sub_Category, productName, Sales, quantity, discount, profit;
+            orderID = tfOrderID.getText();
+            orderDate = tfOrderDate.getText();
+            shipDate = tfShipDate.getText();
+            shipMode = tfShipMode.getText();
+            customerID = tfCustomerID.getText();
+            customerName = tfCustomerName.getText();
+            segment = tfSegment.getText();
+            country = tfCountry.getText();
+            city = tfCity.getText();
+            state = tfState.getText();
+            postalCode = tfPostalCode.getText();
+            region = tfRegion.getText();
+            productID = tfProductID.getText();
+            category = tfCategory.getText();
+            sub_Category = tfSubCategory.getText();
+            productName = tfProductName.getText();
+            Sales = tfSales.getText();
+            quantity = tfQuantity.getText();
+            discount = tfDiscount.getText();
+            profit = tfProfit.getText();
+            Agregar agg = new Agregar(jPanel1, orderID, orderDate, shipDate, shipMode, customerID, customerName, segment, country, city, state, postalCode, region, productID, category, sub_Category, productName, Sales, quantity, discount, profit);
+        }
     }//GEN-LAST:event_btnAgregarRegistroMouseClicked
 
     private void btnListarOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarOrdersMouseClicked
-        
+
     }//GEN-LAST:event_btnListarOrdersMouseClicked
 
     private void btnListarDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarDetailsMouseClicked
-        
+
     }//GEN-LAST:event_btnListarDetailsMouseClicked
 
     private void btnListarCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarCustomersMouseClicked
-        
+
     }//GEN-LAST:event_btnListarCustomersMouseClicked
 
     private void btnListarProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarProductsMouseClicked
-        
+
     }//GEN-LAST:event_btnListarProductsMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
-        
+
     }//GEN-LAST:event_btnClearMouseClicked
 
     private void btnUpdateTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateTableMouseClicked
-        
+
     }//GEN-LAST:event_btnUpdateTableMouseClicked
 
     private void btnEliminarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarRegistroMouseClicked
-        
+
     }//GEN-LAST:event_btnEliminarRegistroMouseClicked
 
     /**
