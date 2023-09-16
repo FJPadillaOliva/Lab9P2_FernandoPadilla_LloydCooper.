@@ -559,6 +559,27 @@ public class MainFrame extends javax.swing.JFrame {
             profit = tfProfit.getText();
             Agregar agg = new Agregar(jPanel1, orderID, orderDate, shipDate, shipMode, customerID, customerName, segment, country, city, state, postalCode, region, productID, category, sub_Category, productName, Sales, quantity, discount, profit);
             refrescarTable();
+            
+            tfCategory.setText("");
+            tfCity.setText("");
+            tfCountry.setText("");
+            tfCustomerID.setText("");
+            tfCustomerName.setText("");
+            tfDiscount.setText("");
+            tfOrderDate.setText("");
+            tfOrderID.setText("");
+            tfPostalCode.setText("");
+            tfProductID.setText("");
+            tfProductName.setText("");
+            tfProfit.setText("");
+            tfQuantity.setText("");
+            tfRegion.setText("");
+            tfSales.setText("");
+            tfSegment.setText("");
+            tfShipDate.setText("");
+            tfShipMode.setText("");
+            tfState.setText("");
+            tfSubCategory.setText("");
         }
     }//GEN-LAST:event_btnAgregarRegistroMouseClicked
 
