@@ -15,7 +15,7 @@ public class adminBarraTA extends Thread {
     private int tipo;
 
     public adminBarraTA(JProgressBar barra, int tiempo, JTextArea ta, int tipo) {
-        colornull = barra.getBackground();
+        colornull = barra.getForeground();
         this.barra = barra;
         avanzar = true;
         vive = true;
@@ -62,7 +62,7 @@ public class adminBarraTA extends Thread {
             barra.setValue(barra.getValue() + 1);
             if (barra.getValue() == tiempo) {
                 vive = false;
-                barra.setBackground(colornull);
+                barra.setForeground(colornull);
                 barra.setValue(0);
                 ta.setText("");
                 if (tipo == 1) {

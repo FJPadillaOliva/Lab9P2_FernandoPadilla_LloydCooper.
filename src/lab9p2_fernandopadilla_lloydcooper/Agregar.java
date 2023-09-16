@@ -205,7 +205,6 @@ public class Agregar {
                     + " ([Order ID], [Order Date], [Ship Date], [Ship Mode], [Customer ID], [Customer Name], [Segment], [Country], [City], [State], [Postal Code], [Region], [Product ID], [Category], [Sub-Category], [Product Name], [Sales], [Quantity], [Discount], [Profit])"
                     + " VALUES ('" + orderID + "', '" + orderDate +"', '"+ shipDate +"', '"+ shipMode+"', '"+ customerID+"', '"+ customerName+"', '"+ segment +"', '"+ country +"', '"+ city +"', '"+ state +"', '"+ postalCode +"', '"+ region +"', '"+ productID +"', '"+ category +"', '"+ sub_Category +"', '"+ productName+"', '"+ Sales +"', '"+ quantity +"', '"+ discount +"', '"+ profit +"');");
             db.commit();
-            JOptionPane.showMessageDialog(panel, "Agregado exitosamente");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(panel, "No se pudo realizar la operacion");
         }

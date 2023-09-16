@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 
 public class adminBarra extends Thread {
 
@@ -15,7 +16,7 @@ public class adminBarra extends Thread {
     private JPanel panel;
 
     public adminBarra(JProgressBar barra, int tiempo,JPanel panel) {
-        colornull = barra.getBackground();
+        colornull = barra.getForeground();
         this.barra = barra;
         avanzar = true;
         vive = true;
@@ -61,7 +62,7 @@ public class adminBarra extends Thread {
             barra.setValue(barra.getValue() + 1);
             if (barra.getValue() == tiempo) {
                 vive = false;
-                barra.setBackground(colornull);
+                barra.setForeground(colornull);
                 barra.setValue(0);
                 JOptionPane.showMessageDialog(panel, "Accion realizada exitosamente");
             }
