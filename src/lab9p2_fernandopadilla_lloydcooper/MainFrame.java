@@ -1,5 +1,6 @@
 package lab9p2_fernandopadilla_lloydcooper;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -7,6 +8,9 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
+
+    adminBarra ab;
+    adminBarraTA abt;
 
     public MainFrame() {
         initComponents();
@@ -488,6 +492,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Eliminar Registro", jPanel3);
 
+        pbMain.setMaximum(0);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -517,6 +523,12 @@ public class MainFrame extends javax.swing.JFrame {
                 || tfProductName.getText().isEmpty() || tfSales.getText().isEmpty() || tfQuantity.getText().isEmpty() || tfDiscount.getText().isEmpty() || tfProfit.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
         } else {
+            ab = new adminBarra(pbMain, 0,jPanel1);
+            pbMain.setMaximum(6);
+            pbMain.setBackground(Color.YELLOW);
+            ab.setVive(true);
+            ab.setTiempo(6);
+            ab.start();
             String orderID, orderDate, shipDate, shipMode, customerID, customerName,
                     segment, country, city, state, postalCode, region, productID, category,
                     sub_Category, productName, Sales, quantity, discount, profit;
@@ -546,27 +558,35 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarRegistroMouseClicked
 
     private void btnListarOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarOrdersMouseClicked
-        taListar.setText("");
-        Listar list = new Listar(taListar);
-        list.listOrders(taListar);
+        abt = new adminBarraTA(pbMain, 4, taListar, 1);
+        pbMain.setMaximum(4);
+        pbMain.setBackground(Color.green);
+        abt.setVive(true);
+        abt.start();
     }//GEN-LAST:event_btnListarOrdersMouseClicked
 
     private void btnListarDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarDetailsMouseClicked
-        taListar.setText("");
-        Listar list = new Listar(taListar);
-        list.listDetails(taListar);
+        abt = new adminBarraTA(pbMain, 5, taListar, 2);
+        pbMain.setMaximum(5);
+        pbMain.setBackground(Color.green);
+        abt.setVive(true);
+        abt.start();
     }//GEN-LAST:event_btnListarDetailsMouseClicked
 
     private void btnListarCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarCustomersMouseClicked
-        taListar.setText("");
-        Listar list = new Listar(taListar);
-        list.listCustomers(taListar);
+        abt = new adminBarraTA(pbMain, 6, taListar, 3);
+        pbMain.setMaximum(6);
+        pbMain.setBackground(Color.green);
+        abt.setVive(true);
+        abt.start();
     }//GEN-LAST:event_btnListarCustomersMouseClicked
 
     private void btnListarProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarProductsMouseClicked
-        taListar.setText("");
-        Listar list = new Listar(taListar);
-        list.listProducts(taListar);
+        abt = new adminBarraTA(pbMain, 3, taListar, 4);
+        pbMain.setMaximum(3);
+        pbMain.setBackground(Color.green);
+        abt.setVive(true);
+        abt.start();
     }//GEN-LAST:event_btnListarProductsMouseClicked
 
     private void btnClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseClicked
@@ -581,6 +601,20 @@ public class MainFrame extends javax.swing.JFrame {
         if (tablaEliminar.getSelectedRow() >= 0) {
             if (JOptionPane.showConfirmDialog(this, "Desea eliminar este elemento?", "Eliminar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 Eliminar elim = new Eliminar(Integer.parseInt(tablaEliminar.getValueAt(tablaEliminar.getSelectedRow(), 0).toString()));
+                ab = new adminBarra(pbMain, 5,jPanel3);
+                pbMain.setMaximum(5);
+                pbMain.setBackground(Color.MAGENTA);
+                ab.setVive(true);
+                ab.start();
+                Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+                refrescarTable();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+                thread.start();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe elegir un elemento de la tabla");

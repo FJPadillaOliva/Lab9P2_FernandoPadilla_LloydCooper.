@@ -729,6 +729,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JProgressBar" name="pbMain">
+      <Properties>
+        <Property name="maximum" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
